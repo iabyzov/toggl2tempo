@@ -1,20 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var checkPageButton = document.getElementById('checkPage');
-  checkPageButton.addEventListener('click', function() {
+var fetch = require('node-fetch');
 
-    chrome.tabs.getSelected(null, function(tab) {
-      d = document;
+var myInit = {
+    method: 'GET',
+    //headers: {Authorization: 'Basic ' + new Buffer('login' + ':' + 'pass').toString('base64')},
+    headers: {Authorization: 'Basic ' + new Buffer('' + ':api_token').toString('base64')},
+    compress: false
+}
 
-      var f = d.createElement('form');
-      f.action = 'http://gtmetrix.com/analyze.html?bm';
-      f.method = 'post';
-      var i = d.createElement('input');
-      i.type = 'hidden';
-      i.name = 'url';
-      i.value = tab.url;
-      f.appendChild(i);
-      d.body.appendChild(f);
-      f.submit();
+fetch('https://www.toggl.com/api/v8/time_entries', myInit)
+    .then(function(res) {
+        return res.json();
+    }).then(function(body) {
+        console.log(body);
     });
-  }, false);
-}, false);
