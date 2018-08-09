@@ -8,5 +8,6 @@ namespace Tempo.Services
         Uri JiraTempoUri { get; }
 
         ITempoDomain Tempo { get; }
+        void SetBearer(string token);
     }
 }

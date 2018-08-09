@@ -17,7 +17,7 @@ namespace Tempo.Services
         public static async Task<List<Worklog>> GetWorklogsAsync(this ITempoDomain jiraClient,
             DateTime dateFrom, DateTime dateTo, CancellationToken cancellationToken = default(CancellationToken))
         {
-            jiraClient.Behaviour.MakeCurrent();
+            jiraClient.TempoBehaviour.MakeCurrent();
             var res = await jiraClient.JiraTempoUri
                 .AppendSegments("worklogs")
                 .ExtendQuery("dateFrom", dateFrom.ToIsoDateStr())
@@ -36,7 +36,7 @@ namespace Tempo.Services
             if (issue == null)
                 throw new ArgumentNullException("worklog");
 
-            jiraClient.Behaviour.MakeCurrent();
+            jiraClient.TempoBehaviour.MakeCurrent();
             var res = await jiraClient.JiraTempoUri
                 .AppendSegments("worklogs")
                 .PostAsync<HttpResponse<Worklog, Error>>(issue, cancellationToken)
@@ -55,7 +55,7 @@ namespace Tempo.Services
             if (issue.Id == null)
                 throw new ArgumentNullException("worklog.Id");
 
-            jiraClient.Behaviour.MakeCurrent();
+            jiraClient.TempoBehaviour.MakeCurrent();
             var res = await jiraClient.JiraTempoUri
                 .AppendSegments("worklogs")
                 .AppendSegments(issue.Id)
@@ -68,7 +68,7 @@ namespace Tempo.Services
         public static async void DeleteAsync(this ITempoDomain jiraClient,
             long id, CancellationToken cancellationToken = default(CancellationToken))
         {
-            jiraClient.Behaviour.MakeCurrent();
+            jiraClient.TempoBehaviour.MakeCurrent();
 
             var res = await jiraClient.JiraTempoUri
                 .AppendSegments("worklogs")

@@ -18,12 +18,15 @@ namespace Tempo.Services
     {
         private string _password;
         private string _user;
+        private string _tempoToken;
 
         /// <summary>
         ///     Store the specific HttpBehaviour, which contains a IHttpSettings and also some additional logic for making a
         ///     HttpClient which works with Jira
         /// </summary>
         public IHttpBehaviour Behaviour { get; set; }
+
+        public IHttpBehaviour TempoBehaviour { get; set; }
 
         /// <summary>The base URI for your JIRA server</summary>
         public Uri JiraBaseUri { get; }
@@ -132,7 +135,8 @@ namespace Tempo.Services
             this.JiraBaseUri = baseUri;
             this.JiraRestUri = baseUri.AppendSegments((object)"rest", (object)"api", (object)"2");
             this.JiraAuthUri = baseUri.AppendSegments((object)"rest", (object)"auth", (object)"1");
-            JiraTempoUri = baseUri.AppendSegments("rest", "tempo-timesheets", "3");
+            var baseTempoUri = new Uri("https://api.tempo.io");
+            JiraTempoUri = baseTempoUri.AppendSegments("rest-legacy", "tempo-timesheets", "3");
             this.JiraAgileRestUri = baseUri.AppendSegments((object)"rest", (object)"agile", (object)"1.0");
             this.JiraGreenhopperRestUri = baseUri.AppendSegments((object)"rest", (object)"greenhopper", (object)"1.0");
         }
@@ -164,6 +168,24 @@ namespace Tempo.Services
                     httpMessage.Headers.TryAddWithoutValidation("X-Atlassian-Token", "nocheck");
                 if (!string.IsNullOrEmpty(this._user) && this._password != null && httpMessage != null)
                     httpMessage.SetBasicAuthorization(this._user, this._password);
+                return httpMessage;
+            });
+            return (IHttpBehaviour)behaviour;
+        }
+
+        public void SetBearer(string token)
+        {
+            _tempoToken = token;
+            TempoBehaviour = ConfigureTempoBehaviour(new HttpBehaviour());
+        }
+
+        private IHttpBehaviour ConfigureTempoBehaviour(HttpBehaviour behaviour)
+        {
+            behaviour.JsonSerializer = (IJsonSerializer)new JsonNetJsonSerializer();
+            behaviour.OnHttpRequestMessageCreated = (Func<HttpRequestMessage, HttpRequestMessage>)(httpMessage =>
+            {
+                if (!string.IsNullOrEmpty(_tempoToken))
+                    httpMessage.SetBearer(_tempoToken);
                 return httpMessage;
             });
             return (IHttpBehaviour)behaviour;

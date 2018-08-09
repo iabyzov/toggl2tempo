@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TempoTests", "TempoTests\Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{32651777-4161-41E2-930D-CC4B2A183BE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNet.Security.OAuth.Jira", "AspNet.Security.OAuth.Jira\AspNet.Security.OAuth.Jira.csproj", "{9DF72AC8-3EDD-4F13-869A-5C8FE4EC5A64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNet.Security.OAuth.Jira", "..\OAuth\AspNet.Security.OAuth.Jira\AspNet.Security.OAuth.Jira\AspNet.Security.OAuth.Jira.csproj", "{ABE5452C-8F1B-4752-AA71-3DBB790B715F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{32651777-4161-41E2-930D-CC4B2A183BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32651777-4161-41E2-930D-CC4B2A183BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32651777-4161-41E2-930D-CC4B2A183BE9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DF72AC8-3EDD-4F13-869A-5C8FE4EC5A64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DF72AC8-3EDD-4F13-869A-5C8FE4EC5A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DF72AC8-3EDD-4F13-869A-5C8FE4EC5A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DF72AC8-3EDD-4F13-869A-5C8FE4EC5A64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABE5452C-8F1B-4752-AA71-3DBB790B715F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABE5452C-8F1B-4752-AA71-3DBB790B715F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABE5452C-8F1B-4752-AA71-3DBB790B715F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABE5452C-8F1B-4752-AA71-3DBB790B715F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
