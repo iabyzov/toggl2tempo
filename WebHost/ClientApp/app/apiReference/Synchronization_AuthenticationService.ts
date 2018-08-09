@@ -1,4 +1,4 @@
-// ! Generated Code !
+﻿// ! Generated Code !
 
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Injectable} from "@angular/core";
@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 import {JiraAuthModel} from "./Synchronization_JiraAuthModel";
 import {TogglAuthModel} from "./Synchronization_TogglAuthModel";
-import {LoginResult} from "./Synchronization_LoginResult";
+import {TempoAuthModel} from "./Synchronization_TempoAuthModel";
 
 @Injectable()
 export class AuthenticationService {
@@ -17,21 +17,21 @@ export class AuthenticationService {
     public signInJira(model: JiraAuthModel):Observable<any> {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.post(`api/authentication/signInJira`, JSON.stringify(model), options)
+        return this.http.post(`api/Authentication/signInJira`, JSON.stringify(model), options)
             .map((_res:Response) => null);
     }
 
     public signInToggl(model: TogglAuthModel):Observable<any> {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.post(`api/authentication/signInToggl`, JSON.stringify(model), options)
+        return this.http.post(`api/Authentication/signInToggl`, JSON.stringify(model), options)
             .map((_res:Response) => null);
     }
 
-    public login(model: JiraAuthModel):Observable<LoginResult> {
+    public signInTempo(model: TempoAuthModel):Observable<any> {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.post(`api/authentication/login`, JSON.stringify(model), options)
-            .map((res:Response) => <LoginResult>(res.text() ? res.json() : null));
+        return this.http.post(`api/Authentication/signInTempo`, JSON.stringify(model), options)
+            .map((_res:Response) => null);
     }
 }

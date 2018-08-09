@@ -10,14 +10,14 @@ export class AuthGuard implements CanActivate {
         private _localStorage: LocalStorageService) { }
  
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        
-        if (this._localStorage.get('currentUser')) {
-            // logged in so return true
-            return true;
-        }
+        return true;
+        //if (this._localStorage.get('currentUser')) {
+        //    // logged in so return true
+        //    return true;
+        //}
  
-        // not logged in so redirect to login page with the return url
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-        return false;
+        //// not logged in so redirect to login page with the return url
+        //this.router.navigateByUrl('/Account/Login');
+        //return false;
     }
 }

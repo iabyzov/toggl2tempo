@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using BLL.Database;
 using BLL.Database.Entities;
+using Common;
 using Microsoft.AspNetCore.Http;
 
 namespace BLL
@@ -46,44 +47,45 @@ namespace BLL
             return Get(login).Id;
         }
 
+        public void SaveTempoTokenForCurrentUser(string tempoToken)
+        {
+            var user = GetCurrentUser();
+            user.TempoToken = tempoToken;
+            _context.Update(user);
+
+            _context.SaveChanges();
+        }
+
         public void SaveTogglTokenForCurrentUser(string togglToken)
         {
-            var userIdClaim = _httpContextAccessor.HttpContext.User.FindFirst(ClaimsIdentity.DefaultNameClaimType);
-            if (userIdClaim == null)
-            {
-                throw new NullReferenceException($"{ClaimsIdentity.DefaultNameClaimType} is not presented in claims");
-            }
+            var user = GetCurrentUser();
 
-            int userId;
-            if (!int.TryParse(userIdClaim.Value, out userId))
-            {
-                throw new InvalidOperationException($"{ClaimsIdentity.DefaultNameClaimType} has not integer value");
-            }
-
-            var user = _context.Users.SingleOrDefault(u => u.Id == userId);
             user.TogglToken = togglToken;
             _context.Update(user);
 
             _context.SaveChanges();
         }
 
+        private UserEntity GetCurrentUser()
+        {
+            var loginName = _httpContextAccessor.HttpContext.User.Identity.GetNameId();
+
+            var user = _context.Users.SingleOrDefault(u => u.Email == loginName);
+            return user;
+        }
+
         public string GetTogglTokenForCurrentUser()
         {
-            var userIdClaim = _httpContextAccessor.HttpContext.User.FindFirst(ClaimsIdentity.DefaultNameClaimType);
-            if (userIdClaim == null)
-            {
-                throw new NullReferenceException($"{ClaimsIdentity.DefaultNameClaimType} is not presented in claims");
-            }
-
-            int userId;
-            if (!int.TryParse(userIdClaim.Value, out userId))
-            {
-                throw new InvalidOperationException($"{ClaimsIdentity.DefaultNameClaimType} has not integer value");
-            }
-
-            var user = _context.Users.SingleOrDefault(u => u.Id == userId);
+            var user = GetCurrentUser();
 
             return user.TogglToken;
+        }
+
+        public string GetTempoTokenForCurrentUser()
+        {
+            var user = GetCurrentUser();
+
+            return user.TempoToken;
         }
     }
 }

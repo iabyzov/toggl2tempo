@@ -7,5 +7,7 @@
         public string Email { get; set; }
 
         public string TogglToken { get; set; }
+
+        public string TempoToken { get; set; }
     }
 }

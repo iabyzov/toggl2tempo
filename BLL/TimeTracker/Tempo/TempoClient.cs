@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using Microsoft.Extensions.Configuration;
 
 using Common;
@@ -21,7 +22,8 @@ namespace BLL.TimeTracker.Tempo
     public class TempoClient : ITempoClient
     {
         private IConfiguration _configuration;
-        private readonly IJiraCookieAuthentication _cookieAuthentication;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IApplicationUserService _userService;
 
         private IConfigurationSection _jiraConfig = null;
         private IWorklogService _worklogService = null;
@@ -30,10 +32,11 @@ namespace BLL.TimeTracker.Tempo
 
         private const string ActivityAttributeKey = "_Activity_";
 
-        public TempoClient(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IJiraCookieAuthentication cookieAuthentication )
+        public TempoClient(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IApplicationUserService userService )
         {
             _configuration = configuration;
-            _cookieAuthentication = cookieAuthentication;
+            _httpContextAccessor = httpContextAccessor;
+            _userService = userService;
         }
 
         private void Init()
@@ -46,14 +49,9 @@ namespace BLL.TimeTracker.Tempo
             if (_worklogService == null)
             {
                 var jiraHostUri = new Uri(_jiraConfig["Host"]);
-                
-                _worklogService = _cookieAuthentication.GetWorkLogServiceFromCookie(jiraHostUri);
-                //_worklogService.SetBasicAuthentication(user, password);
-            }
 
-            if (_jiraUser == null)
-            {
-                _jiraUser = _worklogService.User.GetMyselfAsync().Result;
+                _worklogService = new WorklogService(jiraHostUri);
+                _worklogService.SetBearer(_userService.GetTempoTokenForCurrentUser());
             }
         }
 
@@ -61,7 +59,7 @@ namespace BLL.TimeTracker.Tempo
         {
             Init();
 
-            var internalWorklog = MapToInternalTempoWorklog(workLog, _jiraUser);
+            var internalWorklog = MapToInternalTempoWorklog(workLog);
 
             InternalTempoWorklog result;
             if (internalWorklog.Id == null)
@@ -108,8 +106,17 @@ namespace BLL.TimeTracker.Tempo
             return worklog;
         }
 
-        private InternalTempoWorklog MapToInternalTempoWorklog(TempoWorklog workLog, User mySelf)
+        private InternalTempoWorklog MapToInternalTempoWorklog(TempoWorklog workLog)
         {
+            var userIdentity = _httpContextAccessor.HttpContext.User.Identity;
+            var nameId = userIdentity.GetNameId();
+            var self = userIdentity.GetSelf();
+
+            if (string.IsNullOrEmpty(nameId) || string.IsNullOrEmpty(self))
+            {
+                throw new InvalidOperationException("Can't find neccessary claims");
+            }
+
             var internalWorklog = new InternalTempoWorklog()
             {
                 DateStarted = workLog.StartTime.ToIsoDateTimeStrWithoutTimeZone(),
@@ -121,8 +128,8 @@ namespace BLL.TimeTracker.Tempo
                 },
                 Author = new InternalTempoAuthor
                 {
-                    Name = mySelf.Name,
-                    Self = mySelf.Self.ToString(),
+                    Name = nameId,
+                    Self = self,
                 }
             };
 
@@ -137,5 +144,7 @@ namespace BLL.TimeTracker.Tempo
 
             return internalWorklog;
         }
+
+
     }
 }

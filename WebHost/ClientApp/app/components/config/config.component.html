@@ -8,16 +8,25 @@
         <form #togglForm="ngForm">
             <div class="form-group" [ngClass]="{'has-error has-feedback': shouldShowErrorMsg(togglToken)}">
                 <input type="text" class="form-control" id="toggl-token" placeholder="Enter your token for toggl"
-                    required
-                    [(ngModel)]="togglAuthModel.token"
-                    name="togglToken"
-                    #togglToken="ngModel">
+                       required
+                       [(ngModel)]="togglAuthModel.token"
+                       name="togglToken"
+                       #togglToken="ngModel">
+                <span *ngIf="shouldShowErrorMsg(togglToken)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <span *ngIf="shouldShowErrorMsg(togglToken)" class="help-block"><p>The Token field is required.</p></span>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error has-feedback': shouldShowErrorMsg(tempoToken)}">
+                <input type="text" class="form-control" id="tempo-token" placeholder="Enter your token for tempo"
+                       required
+                       [(ngModel)]="tempoAuthModel.token"
+                       name="tempoToken"
+                       #tempoToken="ngModel">
                 <span *ngIf="shouldShowErrorMsg(togglToken)" class="glyphicon glyphicon-remove form-control-feedback"></span>
                 <span *ngIf="shouldShowErrorMsg(togglToken)" class="help-block"><p>The Token field is required.</p></span>
             </div>
             <div class="form-group row">
                 <div class="offset-sm-1 col-sm-11">
-                    <button type="submit" class="btn btn-primary" (click)="togglSignIn()" [disabled]="!togglForm.valid">Sign in</button>
+                    <button type="submit" class="btn btn-primary" (click)="signIn()" [disabled]="!togglForm.valid">Sign in</button>
                 </div>
             </div>
         </form>

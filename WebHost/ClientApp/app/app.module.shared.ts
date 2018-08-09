@@ -10,9 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SyncComponent } from './components/sync/sync.component';
 import { ConfigComponent } from './components/config/config.component';
 import { AlertComponent } from "./components/alert/alert.component";
-import { LoginComponent } from "./components/login/login.component";
 import { AuthGuard } from "./guards/auth.guard";
-import { ClientAuthenticationService } from "./services/clietnAuthentication.service";
 import { LocalStorageModule } from "angular-2-local-storage/dist";
 
 export const sharedConfig: NgModule = {
@@ -23,13 +21,11 @@ export const sharedConfig: NgModule = {
         HomeComponent,
         ConfigComponent,
         SyncComponent,
-        AlertComponent,
-        LoginComponent
+        AlertComponent
     ],
     imports: [
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard] },
-            { path: 'login', component: LoginComponent },
             { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
             { path: 'config', component: ConfigComponent, canActivate: [AuthGuard] },
             { path: 'sync', component: SyncComponent, canActivate: [AuthGuard]  },
@@ -44,7 +40,6 @@ export const sharedConfig: NgModule = {
     ],
     providers: [
         AuthGuard,
-        ClientAuthenticationService,
         LocalStorageService
     ]
 };

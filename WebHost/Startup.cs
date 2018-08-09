@@ -1,4 +1,5 @@
 using System;
+using AspNet.Security.OAuth.Jira;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using BLL.Database;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using StructureMap;
 
 namespace WebHost
@@ -34,15 +36,27 @@ namespace WebHost
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc().AddRazorPagesOptions(opts =>
+            {
+                opts.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
+                opts.Conventions.AuthorizePage("/Index");
+                opts.Conventions.AddPageRoute("/Index", "{*url}");
+            });
 
-            services.AddAuthentication(TogglToTempoAuthScheme)
-                .AddCookie(TogglToTempoAuthScheme, options =>
+            services.AddAuthentication(opts =>
                 {
-                    options.LoginPath = "/login";
-                });
-
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+                    opts.DefaultScheme = TogglToTempoAuthScheme;
+                })
+                .AddJira(opts => {
+                    opts.SaveTokens = true;
+                    opts.AccessTokenEndpoint = Configuration["Authentication:Jira:AccessTokenEndpoint"];
+                    opts.RequestTokenEndpoint = Configuration["Authentication:Jira:RequestTokenEndpoint"];
+                    opts.ConsumerKey = Configuration["Authentication:Jira:ConsumerKey"];
+                    opts.ConsumerSecret = Configuration["Authentication:Jira:ConsumerSecret"];
+                    opts.AuthenticationEndpoint = Configuration["Authentication:Jira:AuthenticationEndpoint"];
+                    opts.UserInfoEndpoint = Configuration["Authentication:Jira:UserInfoEndpoint"];
+                })
+                .AddCookie(TogglToTempoAuthScheme);
 
             return ConfigureIoC(services);
         }
@@ -91,16 +105,7 @@ namespace WebHost
 
             app.UseAuthentication();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Home", action = "Index" });
-            });
+            app.UseMvc();
         }
     }
 }

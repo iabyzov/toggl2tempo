@@ -9,5 +9,7 @@ namespace BLL
         int AddUserIfNecessary(string login);
         void SaveTogglTokenForCurrentUser(string togglToken);
         string GetTogglTokenForCurrentUser();
+        void SaveTempoTokenForCurrentUser(string tempoToken);
+        string GetTempoTokenForCurrentUser();
     }
 }
