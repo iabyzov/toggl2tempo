@@ -4,8 +4,10 @@
     <UserSecretsId>A3794052-6ED7-4E62-94D8-7D0325C39855</UserSecretsId>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <IsPackable>false</IsPackable>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AspNet.Security.OAuth.Jira" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.4" />
@@ -42,7 +44,6 @@
     <Content Remove="Controllers\**" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OAuth\AspNet.Security.OAuth.Jira\AspNet.Security.OAuth.Jira\AspNet.Security.OAuth.Jira.csproj" />
     <ProjectReference Include="..\BLL\BLL.csproj" />
   </ItemGroup>
   <ItemGroup>
