@@ -38,7 +38,6 @@ namespace WebHost
             // Add framework services.
             services.AddMvc().AddRazorPagesOptions(opts =>
             {
-                opts.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
                 opts.Conventions.AuthorizePage("/Index");
                 opts.Conventions.AddPageRoute("/Index", "{*url}");
             });
