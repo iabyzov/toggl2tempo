@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BLL.Database.Entities
+namespace Data.Entities
 {
     public class WorklogEntity
     {

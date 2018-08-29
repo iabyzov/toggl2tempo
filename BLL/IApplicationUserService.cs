@@ -1,4 +1,4 @@
-﻿using BLL.Database.Entities;
+﻿using Data.Entities;
 
 namespace BLL
 {

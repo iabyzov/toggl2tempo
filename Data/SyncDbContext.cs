@@ -1,7 +1,7 @@
-﻿using BLL.Database.Entities;
+﻿using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BLL.Database
+namespace Data
 {
     public class SyncDbContext : DbContext
     {

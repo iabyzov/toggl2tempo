@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 using Microsoft.Extensions.Configuration;
-
-using BLL.Database;
-using BLL.Database.Entities;
 using BLL.TimeTracker.Tempo;
 using BLL.TimeTracker.Toggl;
+using Data;
+using Data.Entities;
 
 namespace BLL
 {

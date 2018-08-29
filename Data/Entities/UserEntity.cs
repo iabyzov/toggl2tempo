@@ -1,4 +1,4 @@
-﻿namespace BLL.Database.Entities
+﻿namespace Data.Entities
 {
     public class UserEntity
     {

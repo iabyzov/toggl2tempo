@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using BLL.Database;
-using BLL.Database.Entities;
 using Common;
+using Data;
+using Data.Entities;
 using Microsoft.AspNetCore.Http;
 
 namespace BLL
