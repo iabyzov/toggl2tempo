@@ -9,6 +9,7 @@ using Dapplo.HttpExtensions;
 
 using Worklog = Tempo.DataObjects.Worklog;
 using Common;
+using System.Text;
 
 namespace Tempo.Services
 {
@@ -23,6 +24,7 @@ namespace Tempo.Services
                 .ExtendQuery("dateFrom", dateFrom.ToIsoDateStr())
                 .ExtendQuery("dateTo", dateTo.ToIsoDateStr())
                 .GetAsAsync<HttpResponse<List<Worklog>, Error>>(cancellationToken)
+                .ContinueWith(HandleResponseTask)
                 .ConfigureAwait(false);
 
             //return res.HandleErrors(new HttpStatusCode?(HttpStatusCode.OK));
@@ -40,6 +42,7 @@ namespace Tempo.Services
             var res = await jiraClient.JiraTempoUri
                 .AppendSegments("worklogs")
                 .PostAsync<HttpResponse<Worklog, Error>>(issue, cancellationToken)
+                .ContinueWith(HandleResponseTask)
                 .ConfigureAwait(false);
 
             return res.Response;
@@ -60,6 +63,7 @@ namespace Tempo.Services
                 .AppendSegments("worklogs")
                 .AppendSegments(issue.Id)
                 .PutAsync<HttpResponse<Worklog, Error>>(issue, cancellationToken)
+                .ContinueWith(HandleResponseTask)
                 .ConfigureAwait(false);
 
             return res.Response;
@@ -75,6 +79,22 @@ namespace Tempo.Services
                 .AppendSegments(id)
                 .DeleteAsync<HttpResponse>(cancellationToken)
                 .ConfigureAwait(false);
+        }
+
+        private static HttpResponse<T, Error> HandleResponseTask<T>(Task<HttpResponse<T, Error>> task) where T : class
+        {
+            if (task.Result.HasError)
+            {
+                var errorsStgingBuilder = new StringBuilder($"ERRORS:{Environment.NewLine}");
+                foreach (var error in task.Result.ErrorResponse.Errors)
+                {
+                    errorsStgingBuilder.AppendLine($"KEY: {error.Key}. VALUE: {error.Value}");
+                }
+
+                throw new Exception(errorsStgingBuilder.ToString());
+            }
+
+            return task.Result;
         }
     }
 }

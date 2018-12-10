@@ -33,7 +33,10 @@ namespace BLL
             { "Team Activities", "Other" },
             { "Estimation", "Estimation" },
             { "Bug fixing", "Bugfixing"},
-            { "Code Review Fixes", "Code Review Fixes"}
+            { "Code Review Fixes", "Code Review Fixes"},
+            { "Test Automation", "AutomationPerformanceTesting" },
+            { "Testing", "Testing" },
+            { "PM", "PM" }
         };
 
         public Toggl2TempoSynchronizer(
@@ -111,7 +114,7 @@ namespace BLL
 
             _context.SaveChanges();
 
-            CleanRemovedWorklogsFromTempo(startTime, endTime);
+            //CleanRemovedWorklogsFromTempo(startTime, endTime);
 
             var result = new SyncResult()
             {
