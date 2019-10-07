@@ -9,7 +9,5 @@ namespace BLL.Domain
         IEnumerable<WLType> GetTimeSheet(DateTime start, DateTime end);
 
         void AddWorklog(WLType workLog);
-
-        void DeleteWorklog(long workLogId);
     }
 }

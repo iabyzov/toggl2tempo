@@ -8,12 +8,10 @@ namespace WebHost.ClientApi.Synchronization
     public class AuthenticationController : Controller
     {
         private readonly IApplicationUserService _userService;
-        private IConfiguration _configuration;
 
         public AuthenticationController(IApplicationUserService userService, IConfiguration configuration)
         {
             _userService = userService;
-            _configuration = configuration;
         }
 
         [HttpPost]

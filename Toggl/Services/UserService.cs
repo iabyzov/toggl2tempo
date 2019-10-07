@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-
-using Common;
-using Newtonsoft.Json;
+using Common.Extensions;
 using Toggl.Interfaces;
 
 namespace Toggl.Services

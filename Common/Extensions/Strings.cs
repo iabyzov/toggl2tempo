@@ -1,7 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
-namespace Common
+namespace Common.Extensions
 {
     public static class Strings
     {

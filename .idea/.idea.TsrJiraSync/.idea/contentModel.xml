@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.Rider2019.1/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.1/system/resharper-host/local/Transient/ReSharperHost/v191/SolutionCaches/_TsrJiraSync.1552539972.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="BLL" t="IncludeRecursive">
+        <e p="ApplicationUserService.cs" t="Include" />
+        <e p="BLL.csproj" t="IncludeRecursive" />
+        <e p="Domain" t="Include">
+          <e p="ITimeTracker.cs" t="Include" />
+          <e p="IWorklog.cs" t="Include" />
+          <e p="Worklog.cs" t="Include" />
+        </e>
+        <e p="IApplicationUserService.cs" t="Include" />
+        <e p="IToggl2TempoSynchronizer.cs" t="Include" />
+        <e p="SyncResult.cs" t="Include" />
+        <e p="TimeTracker" t="Include">
+          <e p="Tempo" t="Include">
+            <e p="ITempoClient.cs" t="Include" />
+            <e p="TempoClient.cs" t="Include" />
+            <e p="TempoWorklog.cs" t="Include" />
+          </e>
+          <e p="Toggl" t="Include">
+            <e p="ITogglClient.cs" t="Include" />
+            <e p="TogglClient.cs" t="Include" />
+            <e p="TogglWorklog.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Toggl2TempoSynchronizer.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="BLL.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Common" t="IncludeRecursive">
+        <e p="Common.csproj" t="IncludeRecursive" />
+        <e p="Extensions" t="Include">
+          <e p="Dates.cs" t="Include" />
+          <e p="Identities.cs" t="Include" />
+          <e p="Strings.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="Common.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Data" t="IncludeRecursive">
+        <e p="Changes" t="Include">
+          <e p="db_init.sql" t="Include" />
+        </e>
+        <e p="Data.csproj" t="IncludeRecursive" />
+        <e p="Entities" t="Include">
+          <e p="UserEntity.cs" t="Include" />
+        </e>
+        <e p="Migrations" t="Include">
+          <e p="20180829161836_Initial.Designer.cs" t="Include" />
+          <e p="20180829161836_Initial.cs" t="Include" />
+          <e p="SyncDbContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="SyncDbContext.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="Data.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Tempo" t="IncludeRecursive">
+        <e p="DataObjects" t="Include">
+          <e p="Author.cs" t="Include" />
+          <e p="Worklog.cs" t="Include" />
+          <e p="WorklogAttribute.cs" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="ITempoDomain.cs" t="Include" />
+          <e p="IWorklogService.cs" t="Include" />
+          <e p="TempoExtensions.cs" t="Include" />
+          <e p="WorklogService.cs" t="Include" />
+        </e>
+        <e p="Tempo.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="Tempo.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="TempoTests" t="IncludeRecursive">
+        <e p="Program.cs" t="Include" />
+        <e p="TempoTests.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="TempoTests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Toggl" t="IncludeRecursive">
+        <e p="Constants.cs" t="Include" />
+        <e p="Converters" t="Include">
+          <e p="TogglDateTimeConverter.cs" t="Include" />
+        </e>
+        <e p="DataObjects" t="Include">
+          <e p="Activity.cs" t="Include" />
+          <e p="BaseDataObject.cs" t="Include" />
+          <e p="Client.cs" t="Include" />
+          <e p="ClientRestSharp.cs" t="Include" />
+          <e p="ClientsListRestSharp.cs" t="Include" />
+          <e p="Dashboard.cs" t="Include" />
+          <e p="DetailedReport.cs" t="Include" />
+          <e p="MostActiveUser.cs" t="Include" />
+          <e p="NewBlogPost.cs" t="Include" />
+          <e p="Project.cs" t="Include" />
+          <e p="Report.cs" t="Include" />
+          <e p="ReportTimeEntry.cs" t="Include" />
+          <e p="Session.cs" t="Include" />
+          <e p="Tag.cs" t="Include" />
+          <e p="Task.cs" t="Include" />
+          <e p="TimeEntry.cs" t="Include" />
+          <e p="User.cs" t="Include" />
+          <e p="UserAdd.cs" t="Include" />
+          <e p="UserEdit.cs" t="Include" />
+          <e p="UserExtended.cs" t="Include" />
+          <e p="UserRestSharp.cs" t="Include" />
+          <e p="Workspace.cs" t="Include" />
+          <e p="WorkspaceRestSharp.cs" t="Include" />
+        </e>
+        <e p="ITogglService.cs" t="Include" />
+        <e p="Interfaces" t="Include">
+          <e p="IApiService.cs" t="Include" />
+          <e p="IApiServiceAsync.cs" t="Include" />
+          <e p="IClientService.cs" t="Include" />
+          <e p="IClientServiceAsync.cs" t="Include" />
+          <e p="IDashboardService.cs" t="Include" />
+          <e p="IProjectService.cs" t="Include" />
+          <e p="IProjectServiceAsync.cs" t="Include" />
+          <e p="IReportService.cs" t="Include" />
+          <e p="IReportServiceAsync.cs" t="Include" />
+          <e p="ITagService.cs" t="Include" />
+          <e p="ITagServiceAsync.cs" t="Include" />
+          <e p="ITaskService.cs" t="Include" />
+          <e p="ITaskServiceAsync.cs" t="Include" />
+          <e p="ITimeEntryService.cs" t="Include" />
+          <e p="ITimeEntryServiceAsync.cs" t="Include" />
+          <e p="IUserService.cs" t="Include" />
+          <e p="IUserServiceAsync.cs" t="Include" />
+          <e p="IWorkspaceService.cs" t="Include" />
+          <e p="IWorkspaceServiceAsync.cs" t="Include" />
+        </e>
+        <e p="Properties" t="Include" />
+        <e p="QueryObjects" t="Include">
+          <e p="DetailedReportParams.cs" t="Include" />
+          <e p="ReportParams.cs" t="Include" />
+          <e p="TimeEntryParams.cs" t="Include" />
+        </e>
+        <e p="Requests" t="Include">
+          <e p="ApiRequest.cs" t="Include" />
+        </e>
+        <e p="Responses" t="Include">
+          <e p="ApiResponse.cs" t="Include" />
+        </e>
+        <e p="Routes" t="Include">
+          <e p="ApiRoutes.cs" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="ApiService.cs" t="Include" />
+          <e p="ApiServiceAsync.cs" t="Include" />
+          <e p="ClientService.cs" t="Include" />
+          <e p="ClientServiceAsync.cs" t="Include" />
+          <e p="DashboardService.cs" t="Include" />
+          <e p="ProjectService.cs" t="Include" />
+          <e p="ProjectServiceAsync.cs" t="Include" />
+          <e p="ReportService.cs" t="Include" />
+          <e p="ReportServiceAsync.cs" t="Include" />
+          <e p="TagService.cs" t="Include" />
+          <e p="TagServiceAsync.cs" t="Include" />
+          <e p="TaskService.cs" t="Include" />
+          <e p="TaskServiceAsync.cs" t="Include" />
+          <e p="TimeEntryService.cs" t="Include" />
+          <e p="TimeEntryServiceAsync.cs" t="Include" />
+          <e p="UserService.cs" t="Include" />
+          <e p="UserServiceAsync.cs" t="Include" />
+          <e p="WorkspaceService.cs" t="Include" />
+          <e p="WorkspaceServiceAsync.cs" t="Include" />
+        </e>
+        <e p="Toggl.cs" t="Include" />
+        <e p="Toggl.csproj" t="IncludeRecursive" />
+        <e p="TogglAsync.cs" t="Include" />
+        <e p="app.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="Toggl.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="TogglTests" t="IncludeRecursive">
+        <e p="Program.cs" t="Include" />
+        <e p="TogglTests.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="TogglTests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="TsrJiraSync.sln" t="IncludeFlat" />
+      <e p="WebHost" t="IncludeRecursive">
+        <e p=".gitignore" t="Include" />
+        <e p="ClientApi" t="Include">
+          <e p="Synchronization" t="Include">
+            <e p="AuthenticationController.cs" t="Include" />
+            <e p="JiraAuthModel.cs" t="Include" />
+            <e p="LoginResult.cs" t="Include" />
+            <e p="SyncPeriodModel.cs" t="Include" />
+            <e p="SyncResultModel.cs" t="Include" />
+            <e p="SynchronizationController.cs" t="Include" />
+            <e p="TempoAuthModel.cs" t="Include" />
+            <e p="TogglAuthModel.cs" t="Include" />
+          </e>
+        </e>
+        <e p="ClientApp" t="Include">
+          <e p="app" t="Include">
+            <e p="ObjectUtils.ts" t="Include" />
+            <e p="apiReference" t="Include">
+              <e p="DataTransferObjects.tst" t="Include" />
+              <e p="Services.tst" t="Include" />
+              <e p="Synchronization_AuthenticationService.ts" t="Include" />
+              <e p="Synchronization_JiraAuthModel.ts" t="Include" />
+              <e p="Synchronization_LoginResult.ts" t="Include" />
+              <e p="Synchronization_SyncPeriodModel.ts" t="Include" />
+              <e p="Synchronization_SyncResultModel.ts" t="Include" />
+              <e p="Synchronization_SynchronizationService.ts" t="Include" />
+              <e p="Synchronization_TempoAuthModel.ts" t="Include" />
+              <e p="Synchronization_TogglAuthModel.ts" t="Include" />
+            </e>
+            <e p="app.module.client.ts" t="Include" />
+            <e p="app.module.server.ts" t="Include" />
+            <e p="app.module.shared.ts" t="Include" />
+            <e p="components" t="Include">
+              <e p="alert" t="Include">
+                <e p="alert.component.html" t="Include" />
+                <e p="alert.component.ts" t="Include" />
+              </e>
+              <e p="app" t="Include">
+                <e p="app.component.css" t="Include" />
+                <e p="app.component.html" t="Include" />
+                <e p="app.component.ts" t="Include" />
+              </e>
+              <e p="config" t="Include">
+                <e p="config.component.html" t="Include" />
+                <e p="config.component.ts" t="Include" />
+              </e>
+              <e p="home" t="Include">
+                <e p="home.component.html" t="Include" />
+                <e p="home.component.ts" t="Include" />
+              </e>
+              <e p="navmenu" t="Include">
+                <e p="navmenu.component.css" t="Include" />
+                <e p="navmenu.component.html" t="Include" />
+                <e p="navmenu.component.ts" t="Include" />
+              </e>
+              <e p="sync" t="Include">
+                <e p="sync.component.html" t="Include" />
+                <e p="sync.component.ts" t="Include" />
+                <e p="syncPeriod.viewmodel.ts" t="Include" />
+              </e>
+            </e>
+            <e p="guards" t="Include">
+              <e p="auth.guard.ts" t="Include" />
+            </e>
+            <e p="services" t="Include">
+              <e p="alert.service.ts" t="Include" />
+              <e p="localStorage.service.ts" t="Include" />
+            </e>
+            <e p="utils" t="Include">
+              <e p="date.utils.ts" t="Include" />
+            </e>
+          </e>
+          <e p="boot-client.ts" t="Include" />
+          <e p="boot-server.ts" t="Include" />
+          <e p="dist" t="Include">
+            <e p="387266d796194fb44a83f8795920fd42.png" t="Include" />
+            <e p="89889688147bd7575d6327160d64e760.svg" t="Include" />
+            <e p="main-server.js" t="Include" />
+            <e p="vendor.js" t="Include" />
+          </e>
+        </e>
+        <e p="Dockerfile" t="Include" />
+        <e p="Pages" t="Include">
+          <e p="Account" t="Include">
+            <e p="Login.cshtml" t="Include" />
+            <e p="Login.cshtml.cs" t="Include" />
+          </e>
+          <e p="Index.cshtml" t="Include" />
+          <e p="Index.cshtml.cs" t="Include" />
+          <e p="Shared" t="Include">
+            <e p="Error.cshtml" t="Include" />
+          </e>
+          <e p="_Layout.cshtml" t="Include" />
+          <e p="_ViewImports.cshtml" t="Include" />
+          <e p="_ViewStart.cshtml" t="Include" />
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="WebHost.csproj" t="IncludeRecursive" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="node_modules/@angular/animations" t="IncludeRecursive" />
+        <e p="node_modules/@angular/common" t="IncludeRecursive" />
+        <e p="node_modules/@angular/compiler" t="IncludeRecursive" />
+        <e p="node_modules/@angular/core" t="IncludeRecursive" />
+        <e p="node_modules/@angular/forms" t="IncludeRecursive" />
+        <e p="node_modules/@angular/http" t="IncludeRecursive" />
+        <e p="node_modules/@angular/platform-browser" t="IncludeRecursive" />
+        <e p="node_modules/@angular/platform-browser-dynamic" t="IncludeRecursive" />
+        <e p="node_modules/@angular/platform-server" t="IncludeRecursive" />
+        <e p="node_modules/@angular/router" t="IncludeRecursive" />
+        <e p="node_modules/@types" t="IncludeRecursive">
+          <e p="node" t="IncludeRecursive" />
+        </e>
+        <e p="node_modules/angular-2-local-storage" t="IncludeRecursive" />
+        <e p="node_modules/angular2-material-datepicker" t="IncludeRecursive" />
+        <e p="node_modules/angular2-template-loader" t="IncludeRecursive" />
+        <e p="node_modules/aspnet-prerendering" t="IncludeRecursive" />
+        <e p="node_modules/aspnet-webpack" t="IncludeRecursive" />
+        <e p="node_modules/awesome-typescript-loader" t="IncludeRecursive" />
+        <e p="node_modules/bootstrap" t="IncludeRecursive" />
+        <e p="node_modules/css" t="IncludeRecursive" />
+        <e p="node_modules/css-loader" t="IncludeRecursive" />
+        <e p="node_modules/es6-shim" t="IncludeRecursive" />
+        <e p="node_modules/event-source-polyfill" t="IncludeRecursive" />
+        <e p="node_modules/expose-loader" t="IncludeRecursive" />
+        <e p="node_modules/extract-text-webpack-plugin" t="IncludeRecursive" />
+        <e p="node_modules/file-loader" t="IncludeRecursive" />
+        <e p="node_modules/html-loader" t="IncludeRecursive" />
+        <e p="node_modules/isomorphic-fetch" t="IncludeRecursive" />
+        <e p="node_modules/jquery" t="IncludeRecursive" />
+        <e p="node_modules/json-loader" t="IncludeRecursive" />
+        <e p="node_modules/moment" t="IncludeRecursive" />
+        <e p="node_modules/ngx-progressbar" t="IncludeRecursive" />
+        <e p="node_modules/preboot" t="IncludeRecursive" />
+        <e p="node_modules/raw-loader" t="IncludeRecursive" />
+        <e p="node_modules/reflect-metadata" t="IncludeRecursive" />
+        <e p="node_modules/rxjs" t="IncludeRecursive" />
+        <e p="node_modules/style-loader" t="IncludeRecursive" />
+        <e p="node_modules/to-string-loader" t="IncludeRecursive" />
+        <e p="node_modules/typescript" t="IncludeRecursive">
+          <e p="lib/lib.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.dom.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.dom.iterable.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2015.collection.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2015.core.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2015.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2015.generator.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2015.iterable.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2015.promise.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2015.proxy.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2015.reflect.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2015.symbol.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2015.symbol.wellknown.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2016.array.include.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2016.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2016.full.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2017.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2017.full.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2017.object.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2017.sharedmemory.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es2017.string.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es5.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.es6.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.esnext.asynciterable.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.esnext.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.esnext.full.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.scripthost.d.ts" t="IncludeRecursive" />
+          <e p="lib/lib.webworker.d.ts" t="IncludeRecursive" />
+        </e>
+        <e p="node_modules/url-loader" t="IncludeRecursive" />
+        <e p="node_modules/webpack" t="IncludeRecursive" />
+        <e p="node_modules/webpack-hot-middleware" t="IncludeRecursive" />
+        <e p="node_modules/webpack-merge" t="IncludeRecursive" />
+        <e p="node_modules/zone.js" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="UserSecretsAssemblyInfo.cs" t="Include" />
+              <e p="WebHost.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="package-lock.json" t="Include" />
+        <e p="package.json" t="Include" />
+        <e p="resources" t="Include">
+          <e p="ColorLogo.png" t="Include" />
+        </e>
+        <e p="tsconfig.json" t="Include" />
+        <e p="web.config" t="Include" />
+        <e p="webpack.config.js" t="Include" />
+        <e p="webpack.config.vendor.js" t="Include" />
+        <e p="wwwroot" t="Include">
+          <e p="css" t="Include">
+            <e p="cover.css" t="Include" />
+          </e>
+          <e p="dist" t="Include">
+            <e p="387266d796194fb44a83f8795920fd42.png" t="Include" />
+            <e p="89889688147bd7575d6327160d64e760.svg" t="Include" />
+            <e p="main-client.js" t="Include" />
+            <e p="main-client.js.map" t="Include" />
+            <e p="vendor-manifest.json" t="Include" />
+            <e p="vendor.css" t="Include" />
+            <e p="vendor.js" t="Include" />
+          </e>
+          <e p="js" t="Include">
+            <e p="bootstrap.bundle.js" t="Include" />
+            <e p="bootstrap.bundle.js.map" t="Include" />
+            <e p="bootstrap.bundle.min.js" t="Include" />
+            <e p="bootstrap.bundle.min.js.map" t="Include" />
+            <e p="bootstrap.js" t="Include" />
+            <e p="bootstrap.js.map" t="Include" />
+            <e p="bootstrap.min.js" t="Include" />
+            <e p="bootstrap.min.js.map" t="Include" />
+          </e>
+          <e p="lib" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p=".bower.json" t="Include" />
+              <e p="LICENSE" t="Include" />
+              <e p="dist" t="Include">
+                <e p="css" t="Include">
+                  <e p="bootstrap-grid.css" t="Include" />
+                  <e p="bootstrap-grid.css.map" t="Include" />
+                  <e p="bootstrap-grid.min.css" t="Include" />
+                  <e p="bootstrap-grid.min.css.map" t="Include" />
+                  <e p="bootstrap-reboot.css" t="Include" />
+                  <e p="bootstrap-reboot.css.map" t="Include" />
+                  <e p="bootstrap-reboot.min.css" t="Include" />
+                  <e p="bootstrap-reboot.min.css.map" t="Include" />
+                  <e p="bootstrap.css" t="Include" />
+                  <e p="bootstrap.css.map" t="Include" />
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="fonts" t="Include">
+                  <e p="glyphicons-halflings-regular.eot" t="Include" />
+                  <e p="glyphicons-halflings-regular.svg" t="Include" />
+                  <e p="glyphicons-halflings-regular.ttf" t="Include" />
+                  <e p="glyphicons-halflings-regular.woff" t="Include" />
+                  <e p="glyphicons-halflings-regular.woff2" t="Include" />
+                </e>
+                <e p="js" t="Include">
+                  <e p="bootstrap.bundle.js" t="Include" />
+                  <e p="bootstrap.bundle.js.map" t="Include" />
+                  <e p="bootstrap.bundle.min.js" t="Include" />
+                  <e p="bootstrap.bundle.min.js.map" t="Include" />
+                  <e p="bootstrap.js" t="Include" />
+                  <e p="bootstrap.js.map" t="Include" />
+                  <e p="bootstrap.min.js" t="Include" />
+                  <e p="bootstrap.min.js.map" t="Include" />
+                  <e p="npm.js" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

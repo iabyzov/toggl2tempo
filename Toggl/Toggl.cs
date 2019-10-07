@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Toggl.Interfaces;
+﻿using Toggl.Interfaces;
 using Toggl.Services;
 
 namespace Toggl
@@ -18,11 +14,12 @@ namespace Toggl
         /// Holds methods to access client information
         /// </summary>
         public IClientService Client { get; private set; }
+
         /// <summary>
         /// Holds methods to access project information
         /// </summary>
         public IProjectService Project { get; private set; }
-        
+
         /// <summary>
         /// Holds methods to access tag information
         /// </summary>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Dapplo.Jira;
-using Dapplo.Jira.Query;
 using Tempo.DataObjects;
 using Tempo.Services;
 
@@ -18,22 +17,16 @@ namespace TempoTests
             var myselfAsync = tempoClient.User.GetMyselfAsync().Result;
             var worklog = new Worklog()
             {
-                Author = new Author()
-                {
-                    Name = myselfAsync.Name,
-                    Self = myselfAsync.Self.ToString()
-                },
-                Issue = new Issue()
-                {
-                    Key = "18652"
-                },
-                DateStarted = DateTime.Now.ToString("o"),
-                Comment = "Tested toggl2tempo",
+                AuthorAccountId = myselfAsync.Name,
+                IssueKey = "18652",
+                StartDate = DateTime.Now.ToString("yyyy-MM-dd"),
+                StartTime = DateTime.Now.ToString("HH:mm:ss"),
+                Description = "Tested toggl2tempo",
                 TimeSpentSeconds = 2600,
                 WorklogAttributes = new List<WorklogAttribute>() { new WorklogAttribute() { Key = "_Activity_", Value = "Other"} }
             };
 
-            var result = tempoClient.Tempo.CreateAsync(worklog).Result;
+            tempoClient.Tempo.CreateAsync(worklog).Wait();
         }
     }
 }

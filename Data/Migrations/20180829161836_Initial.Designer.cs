@@ -36,22 +36,6 @@ namespace Data.Migrations
 
                     b.ToTable("User");
                 });
-
-            modelBuilder.Entity("Data.Entities.WorklogEntity", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<long>("MasterId");
-
-                    b.Property<long>("SecondaryId");
-
-                    b.Property<DateTime>("UpdatedOn");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Worklog");
-                });
 #pragma warning restore 612, 618
         }
     }

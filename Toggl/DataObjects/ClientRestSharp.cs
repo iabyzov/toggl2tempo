@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Newtonsoft.Json;
-using Toggl.DataObjects;
 
 namespace Toggl
 {
@@ -49,7 +44,7 @@ namespace Toggl
 
 	    public override string ToString()
 	    {
-		    return string.Format("Name: {0} {1}", this.name, server_deleted_at == null ? string.Empty : "[DELETED]");
+		    return string.Format("Name: {0} {1}", name, server_deleted_at == null ? string.Empty : "[DELETED]");
 	    }
     }
 }

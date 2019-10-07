@@ -1,6 +1,5 @@
 ﻿using System;
-
-using Common;
+using Common.Extensions;
 using Toggl.QueryObjects;
 using Toggl.Services;
 

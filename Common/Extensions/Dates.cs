@@ -1,15 +1,17 @@
-using System.Diagnostics.CodeAnalysis;
+using System;
 
-namespace Common
+namespace Common.Extensions
 {
-    using System;
-    using System.Runtime.CompilerServices;
-
     public static class Dates
     {
         public static string ToIsoDateStr(this DateTime date)
         {
             return date.ToString("yyyy-MM-dd");
+        }
+
+        public static string ToIsoTimeStr(this DateTime date)
+        {
+            return date.ToString("HH:mm:ss");
         }
 
         public static string ToIsoDateTimeStr(this DateTime date)

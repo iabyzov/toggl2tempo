@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Toggl.DataObjects;
 using Toggl.Interfaces;
 
 namespace Toggl.Services
@@ -154,7 +151,7 @@ namespace Toggl.Services
 
             if (apiRequest.Args != null && apiRequest.Args.Count > 0)
             {
-                apiRequest.Args.ForEach(e => value += e.Key + "=" + System.Uri.EscapeDataString(e.Value) + "&");
+                apiRequest.Args.ForEach(e => value += e.Key + "=" + Uri.EscapeDataString(e.Value) + "&");
                 value = value.Trim('&');
             }
 
@@ -183,7 +180,7 @@ namespace Toggl.Services
 
             if (apiRequest.Args != null && apiRequest.Args.Count > 0)
             {
-                apiRequest.Args.ForEach(e => value += e.Key + "=" + System.Uri.EscapeDataString(e.Value) + "&");
+                apiRequest.Args.ForEach(e => value += e.Key + "=" + Uri.EscapeDataString(e.Value) + "&");
                 value = value.Trim('&');
             }
 

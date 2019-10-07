@@ -1,5 +1,4 @@
 ﻿using Dapplo.HttpExtensions;
-using Dapplo.Jira;
 using Dapplo.Jira.Domains;
 
 namespace Tempo.Services

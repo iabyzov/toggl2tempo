@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Text;
-using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Toggl.DataObjects;
 using Toggl.Interfaces;
 using System.Net.Http;
-using System.Net.Http.Headers;
 
 namespace Toggl.Services
 {
@@ -153,7 +149,7 @@ namespace Toggl.Services
 
             if (apiRequest.Args != null && apiRequest.Args.Count > 0)
             {
-                apiRequest.Args.ForEach(e => value += e.Key + "=" + System.Uri.EscapeDataString(e.Value) + "&");
+                apiRequest.Args.ForEach(e => value += e.Key + "=" + Uri.EscapeDataString(e.Value) + "&");
                 value = value.Trim('&');
             }
 
@@ -199,7 +195,7 @@ namespace Toggl.Services
 
             if (apiRequest.Args != null && apiRequest.Args.Count > 0)
             {
-                apiRequest.Args.ForEach(e => value += e.Key + "=" + System.Uri.EscapeDataString(e.Value) + "&");
+                apiRequest.Args.ForEach(e => value += e.Key + "=" + Uri.EscapeDataString(e.Value) + "&");
                 value = value.Trim('&');
             }
 
@@ -241,70 +237,34 @@ namespace Toggl.Services
 
             while (true)
             {
-                try
-                {
-                    var authRequest = ManufactureRequest(apiRequest);
-                    var client = new HttpClient();
-                    //authResponse = (HttpWebResponse)authRequest.GetResponse();
-                    authResponse = client.SendAsync(authRequest).Result;
-                    Console.WriteLine(((int)authResponse.StatusCode).ToString());
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                    // Pay attention to HTTP 429 responses to work with the Leaky bucket
-                    // mentioned at https://github.com/toggl/toggl_api_docs  
-                    // retry as necessary
-
-                    //if (ex.Status == WebExceptionStatus.ProtocolError)
-                    //{
-                    //    var response = ex.Response as HttpWebResponse;
-                    //    if (response != null)
-                    //    {
-                    //        int statusCode = (int)response.StatusCode;
-                    //        Console.WriteLine(statusCode.ToString());
-                    //        if (statusCode == 429)
-                    //        {
-                    //            Thread.Sleep(1500); // 1500ms based on cursory testing
-                    //        }
-                    //        else
-                    //        {
-                    //            throw;
-                    //        }
-                    //    }
-                    //    else {
-                    //        throw;
-                    //    }
-                    //}
-                    //else {
-                    //    throw;
-                    //}
-                }
+                var authRequest = ManufactureRequest(apiRequest);
+                var client = new HttpClient();
+                authResponse = client.SendAsync(authRequest).Result;
+                Console.WriteLine(((int)authResponse.StatusCode).ToString());
+                break;
             }
-            string content = authResponse.Content.ReadAsStringAsync().Result;
-            //using (var reader = new StreamReader(authResponse.GetResponseStream(), Encoding.UTF8))
-            //{
-            //    content = reader.ReadToEnd();
-            //}
+
+            var content = authResponse.Content.ReadAsStringAsync().Result;
 
             if ((string.IsNullOrEmpty(content)
                 || content.ToLower() == "null")
                 && authResponse.StatusCode == HttpStatusCode.OK
                 && apiRequest.Method == HttpMethod.Delete)
             {
-                var rsp = new ApiResponse();
-                rsp.Data = new JObject();
-                rsp.related_data_updated_at = DateTime.Now;
-                rsp.StatusCode = authResponse.StatusCode;
-                rsp.Method = apiRequest.Method;
+                var rsp = new ApiResponse
+                {
+                    Data = new JObject(),
+                    related_data_updated_at = DateTime.Now,
+                    StatusCode = authResponse.StatusCode,
+                    Method = apiRequest.Method
+                };
 
                 return rsp;
             }
 
             try
             {
-	            ApiResponse rsp = content.ToLower() == "null" 
+	            var rsp = content != null && content.ToLower() == "null"
 					? new ApiResponse { Data = null } 
 					: JsonConvert.DeserializeObject<ApiResponse>(content);
 	            
@@ -315,13 +275,14 @@ namespace Toggl.Services
             catch (Exception)
             {
                 var token = JToken.Parse(content);
-                var rsp = new ApiResponse()
+                var rsp = new ApiResponse
                     {
                         Data = token,
                         related_data_updated_at = DateTime.Now,
                         StatusCode = authResponse.StatusCode,
                         Method = apiRequest.Method
                     };
+
                 return rsp;
             }
 
