@@ -12,8 +12,6 @@ namespace BLL.Domain
 
         DateTime EndTime { get; set; }
 
-        WorklogState State { get; set; }
-
         int Duration { get; }
 
         bool IsCorrect { get; }

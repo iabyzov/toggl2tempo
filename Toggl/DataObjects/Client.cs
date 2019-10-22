@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 using Toggl.DataObjects;
 
@@ -60,7 +57,7 @@ namespace Toggl
 
 	    public override string ToString()
 	    {
-		    return string.Format("Id: {0}, Name: {1} {2}", this.Id, this.Name, DeletedAt == null ? string.Empty : "[DELETED]");
+		    return string.Format("Id: {0}, Name: {1} {2}", Id, Name, DeletedAt == null ? string.Empty : "[DELETED]");
 	    }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Toggl.Interfaces;
+﻿using Toggl.Interfaces;
 using Toggl.Services;
 
 namespace Toggl

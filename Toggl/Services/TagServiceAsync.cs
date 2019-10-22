@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using Newtonsoft.Json;
 using Toggl.Interfaces;
 
 namespace Toggl.Services
@@ -31,7 +26,7 @@ namespace Toggl.Services
         /// https://github.com/toggl/toggl_api_docs/blob/master/chapters/tasks.md
         /// </summary>
         /// <returns></returns>
-        public async System.Threading.Tasks.Task<List<Client>> List()
+        public System.Threading.Tasks.Task<List<Client>> List()
         {
             throw new NotImplementedException();
         }

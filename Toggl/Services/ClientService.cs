@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using Newtonsoft.Json;
 using Toggl.Interfaces;
 
 namespace Toggl.Services
 {
-	using System.Resources;
-
 	public class ClientService : IClientService
     {
         private static Dictionary<int, Client> cachedClients;

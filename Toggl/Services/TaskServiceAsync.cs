@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-
-using Common;
-using Newtonsoft.Json;
+using Common.Extensions;
 using Toggl.Interfaces;
-using global::Toggl.QueryObjects;
+using Toggl.QueryObjects;
 
 namespace Toggl.Services
 {
@@ -150,8 +146,8 @@ namespace Toggl.Services
 
         public async System.Threading.Tasks.Task Merge(int masterTaskId, int slaveTaskId, int workspaceId, string userAgent = "TogglAPI.Net")
 	    {
-		    var reportService = new ReportServiceAsync(this.ToggleSrv);
-		    var timeEntryService = new TimeEntryServiceAsync(this.ToggleSrv);
+		    var reportService = new ReportServiceAsync(ToggleSrv);
+		    var timeEntryService = new TimeEntryServiceAsync(ToggleSrv);
 
 			var reportParams = new DetailedReportParams()
 								{
@@ -186,8 +182,8 @@ namespace Toggl.Services
 
         public async System.Threading.Tasks.Task Merge(int masterTaskId, int[] slaveTasksIds, int workspaceId, string userAgent = "TogglAPI.Net")
 		{
-			var reportService = new ReportServiceAsync(this.ToggleSrv);
-			var timeEntryService = new TimeEntryServiceAsync(this.ToggleSrv);
+			var reportService = new ReportServiceAsync(ToggleSrv);
+			var timeEntryService = new TimeEntryServiceAsync(ToggleSrv);
 
 			var reportParams = new DetailedReportParams()
 			{

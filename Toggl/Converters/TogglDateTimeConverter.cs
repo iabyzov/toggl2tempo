@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -15,7 +12,7 @@ namespace Toggl.Converters
             if (value is DateTime)
             {
                 var epoc = new DateTime(1970, 1, 1);
-                var delta = ((DateTime)value) - epoc;
+                var delta = (DateTime)value - epoc;
                 if (delta.TotalSeconds < 0)
                 {
                     throw new ArgumentOutOfRangeException(
@@ -35,8 +32,7 @@ namespace Toggl.Converters
             if (reader.TokenType != JsonToken.Integer)
             {
                 throw new Exception(
-                    String.Format("Unexpected token parsing date. Expected Integer, got {0}.",
-                    reader.TokenType));
+                    $"Unexpected token parsing date. Expected Integer, got {reader.TokenType}.");
             }
 
             var ticks = (long)reader.Value;

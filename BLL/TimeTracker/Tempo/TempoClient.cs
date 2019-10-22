@@ -1,34 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Security.Claims;
 using Microsoft.Extensions.Configuration;
-
-using Common;
-using Dapplo.Jira;
-using Dapplo.Jira.Entities;
+using Common.Extensions;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
 using Tempo.Services;
 
 using InternalTempoWorklog = Tempo.DataObjects.Worklog;
-using InternalTempoIssue = Tempo.DataObjects.Issue;
-using InternalTempoAuthor = Tempo.DataObjects.Author;
 using InternalWorklogAttribute = Tempo.DataObjects.WorklogAttribute;
 
 namespace BLL.TimeTracker.Tempo
 {
     public class TempoClient : ITempoClient
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IApplicationUserService _userService;
 
-        private IConfigurationSection _jiraConfig = null;
-        private IWorklogService _worklogService = null;
-
-        private User _jiraUser = null;
+        private IConfigurationSection _jiraConfig;
+        private IWorklogService _worklogService;
 
         private const string ActivityAttributeKey = "_Activity_";
 
@@ -60,24 +50,7 @@ namespace BLL.TimeTracker.Tempo
             Init();
 
             var internalWorklog = MapToInternalTempoWorklog(workLog);
-
-            InternalTempoWorklog result;
-            if (internalWorklog.Id == null)
-            {
-                result = _worklogService.Tempo.CreateAsync(internalWorklog).Result;
-                workLog.Id = result.Id;
-            }
-            else
-            {
-                result = _worklogService.Tempo.UpdateAsync(internalWorklog).Result;
-            }
-        }
-
-        public void DeleteWorklog(long workLogId)
-        {
-            Init();
-
-            _worklogService.Tempo.DeleteAsync(workLogId);
+            _worklogService.Tempo.CreateAsync(internalWorklog).Wait();
         }
 
         public IEnumerable<TempoWorklog> GetTimeSheet(DateTime start, DateTime end)
@@ -95,9 +68,10 @@ namespace BLL.TimeTracker.Tempo
             var worklog = new TempoWorklog
             {
                 Id = internalWorkLog.Id,
-                Description = internalWorkLog.Comment,
-                StartTime = DateTime.Parse(internalWorkLog.DateStarted),
-                TicketKey = internalWorkLog.Issue.Key,
+                Description = internalWorkLog.Description,
+                StartTime = DateTime.ParseExact($"{internalWorkLog.StartDate} {internalWorkLog.StartTime}",
+                    "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
+                TicketKey = internalWorkLog.IssueKey
             };
 
             worklog.EndTime = worklog.StartTime.AddSeconds(internalWorkLog.TimeSpentSeconds);
@@ -110,27 +84,21 @@ namespace BLL.TimeTracker.Tempo
         {
             var userIdentity = _httpContextAccessor.HttpContext.User.Identity;
             var nameId = userIdentity.GetNameId();
-            var self = userIdentity.GetSelf();
+            var selfAccountId = userIdentity.GetSelfAccountId();
 
-            if (string.IsNullOrEmpty(nameId) || string.IsNullOrEmpty(self))
+            if (string.IsNullOrEmpty(nameId) || string.IsNullOrEmpty(selfAccountId))
             {
-                throw new InvalidOperationException("Can't find neccessary claims");
+                throw new InvalidOperationException("Can't find necessary claims");
             }
 
             var internalWorklog = new InternalTempoWorklog()
             {
-                DateStarted = workLog.StartTime.ToIsoDateTimeStrWithoutTimeZone(),
+                StartDate = workLog.StartTime.ToIsoDateStr(),
+                StartTime = workLog.StartTime.ToIsoTimeStr(),
                 TimeSpentSeconds = workLog.Duration,
-                Comment = workLog.Description,
-                Issue = new InternalTempoIssue
-                {
-                    Key = workLog.TicketKey,
-                },
-                Author = new InternalTempoAuthor
-                {
-                    Name = nameId,
-                    Self = self,
-                }
+                Description = workLog.Description,
+                IssueKey = workLog.TicketKey,
+                AuthorAccountId = selfAccountId
             };
 
             internalWorklog.WorklogAttributes.Add(

@@ -1,6 +1,4 @@
-﻿using System;
-
-using BLL.Domain;
+﻿using BLL.Domain;
 
 namespace BLL.TimeTracker.Tempo
 {
@@ -10,16 +8,10 @@ namespace BLL.TimeTracker.Tempo
 
         public string Activity { get; set; }
 
-        public override bool IsCorrect
-        {
-            get
-            {
-                return
-                    !string.IsNullOrEmpty(TicketKey)
-                    && !string.IsNullOrEmpty(Activity)
-                    && !string.IsNullOrEmpty(Description)
-                    && Duration > 0;
-            }
-        }
+        public override bool IsCorrect =>
+            !string.IsNullOrEmpty(TicketKey)
+            && !string.IsNullOrEmpty(Activity)
+            && !string.IsNullOrEmpty(Description)
+            && Duration > 0;
     }
 }

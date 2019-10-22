@@ -16,7 +16,7 @@ namespace Toggl.Services
 
 	    public DetailedReport FullDetailedReport(DetailedReportParams requestParameters)
 	    {
-		    var report = this.Detailed(requestParameters);
+		    var report = Detailed(requestParameters);
 
 		    if (report.TotalCount < report.PerPage)
 			    return report;

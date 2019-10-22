@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Toggl.Interfaces
+﻿namespace Toggl.Interfaces
 {
     public interface ITaskService
     {

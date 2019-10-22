@@ -14,22 +14,25 @@ namespace Tempo.DataObjects
         [JsonProperty(PropertyName = "id")]
         public long? Id { get; set; }
 
-        [JsonProperty(PropertyName = "dateStarted")]
-        public string DateStarted { get; set; }
+        [JsonProperty(PropertyName = "startDate")]
+        public string StartDate { get; set; }
+
+        [JsonProperty(PropertyName = "startTime")]
+        public string StartTime { get; set; }
 
         [JsonProperty(PropertyName = "timeSpentSeconds")]
         public int TimeSpentSeconds { get; set; }
 
-        [JsonProperty(PropertyName = "comment")]
-        public string Comment { get; set; }
+        [JsonProperty(PropertyName = "description")]
+        public string Description { get; set; }
 
-        [JsonProperty(PropertyName = "issue")]
-        public Issue Issue { get; set; }
+        [JsonProperty(PropertyName = "issueKey")]
+        public string IssueKey { get; set; }
 
-        [JsonProperty(PropertyName = "author")]
-        public Author Author { get; set; }
+        [JsonProperty(PropertyName = "authorAccountId")]
+        public string AuthorAccountId { get; set; }
 
-        [JsonProperty(PropertyName = "worklogAttributes")]
+        [JsonProperty(PropertyName = "attributes")]
         public List<WorklogAttribute> WorklogAttributes { get; set; }
     }
 }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using Common;
+﻿using System.Linq;
+using Common.Extensions;
 using Data;
 using Data.Entities;
 using Microsoft.AspNetCore.Http;

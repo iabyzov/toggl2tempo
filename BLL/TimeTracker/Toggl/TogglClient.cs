@@ -1,11 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Common;
-
+using Common.Extensions;
 using Toggl;
 using Toggl.DataObjects;
 using Toggl.QueryObjects;
@@ -31,11 +27,6 @@ namespace BLL.TimeTracker.Toggl
         }
 
         public void AddWorklog(TogglWorklog workLog)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteWorklog(long workLogId)
         {
             throw new NotImplementedException();
         }

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
-using Common;
+using Common.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -55,7 +54,7 @@ namespace Toggl.DataObjects
                                                 }
 
                                 );
-            var propNm = (string.IsNullOrEmpty(objName)) ? this.GetType().Name.LowerCaseUnderscore() : objName;
+            var propNm = (string.IsNullOrEmpty(objName)) ? GetType().Name.LowerCaseUnderscore() : objName;
 
             return "{\"" + propNm + "\":" + data + "}";
         }
