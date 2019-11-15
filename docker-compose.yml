@@ -1,0 +1,19 @@
+version: '3'
+services:
+  api:
+    image: toggl2tempo
+    build:
+      dockerfile: ./WebHost/Dockerfile
+      context: .
+    ports:
+    - "5000:5000"
+  database:
+    container_name: toggl2tempo_db
+    build:
+      dockerfile: ./Dockerfile
+      context: ./database
+    environment:
+      POSTGRES_DB: "toggl2tempo"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "toggl2tempo"
+
