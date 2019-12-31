@@ -44,6 +44,26 @@ namespace BLL
             return Get(login).Id;
         }
 
+        public void AddUser(string login, string password)
+        {
+            var user = Get(login);
+            if (user != null)
+            {
+                user.Password = password;
+                _context.SaveChanges();
+                return;
+            }
+
+            var newUser = new UserEntity()
+            {
+                Email = login,
+                Password = password
+            };
+
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+        }
+
         public void SaveTempoTokenForCurrentUser(string tempoToken)
         {
             var user = GetCurrentUser();

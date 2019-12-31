@@ -31,8 +31,13 @@
         <h1 class="cover-heading">Toggl2Tempo</h1>
         <p class="lead">Toggl2Tempo is a tool for importing your toggl entries into tempo.</p>
         <p class="lead">
-            <form method="post">
+            <form asp-page-handler="OAuth" method="post">
                 <button type="submit" class="btn btn-lg btn-secondary">Login with Jira</button>
+            </form>
+            <form asp-page-handler="BasicAuth" method="post">
+                <input type="text" class="form-control" name="username"/>
+                <input type="password" class="form-control" name="password"/>
+                <button type="submit" class="btn btn-lg btn-secondary">Login using username and password</button>
             </form>
         </p>
     </main>

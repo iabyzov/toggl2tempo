@@ -6,11 +6,18 @@ namespace WebHost.ClientApi.Synchronization
 {
     public class SynchronizationController : Controller
     {
-        private IToggl2TempoSynchronizer _toggl2TempoSynchronizer;
+        //private IToggl2TempoSynchronizer _toggl2TempoSynchronizer;
 
-        public SynchronizationController(IToggl2TempoSynchronizer toggl2TempoSynchronizer)
+        //public SynchronizationController(IToggl2TempoSynchronizer toggl2TempoSynchronizer)
+        //{
+        //    _toggl2TempoSynchronizer = toggl2TempoSynchronizer;
+        //}
+
+        private ITogglToJiraSynchronizer _togglToJiraSynchronizer;
+
+        public SynchronizationController(ITogglToJiraSynchronizer togglToJiraSynchronizer)
         {
-            _toggl2TempoSynchronizer = toggl2TempoSynchronizer;
+            _togglToJiraSynchronizer = togglToJiraSynchronizer;
         }
 
         [HttpPost]
@@ -18,7 +25,7 @@ namespace WebHost.ClientApi.Synchronization
         [Route("api/[controller]/[action]")]
         public SyncResultModel Sync([FromBody] SyncPeriodModel period)
         {
-            var result = _toggl2TempoSynchronizer.Sync(period.StartTime, period.EndTime);
+            var result = _togglToJiraSynchronizer.Sync(period.StartTime, period.EndTime);
             return new SyncResultModel
             {
                 TempoSentAmount = result.TempoSentAmount,

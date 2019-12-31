@@ -1,4 +1,6 @@
-﻿using AspNet.Security.OAuth.Jira;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
+using AspNet.Security.OAuth.Jira;
 using BLL;
 using Common.Extensions;
 using Microsoft.AspNetCore.Authentication;
@@ -16,11 +18,31 @@ namespace WebHost.Pages
             _userService = userService;
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPostOAuth()
         {
             var redirectUrl = Url.Page("./Login", "Callback");
             var authenticationProperties = new AuthenticationProperties {RedirectUri = redirectUrl};
             return new ChallengeResult(JiraDefaults.AuthenticationScheme, authenticationProperties);
+        }
+
+        public IActionResult OnPostBasicAuth()
+        {
+            var userName = Request.Form["username"];
+            _userService.AddUser(userName, Request.Form["password"]);
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userName),
+            };
+
+            ClaimsIdentity id = new ClaimsIdentity(
+                claims,
+                "ApplicationCookie",
+                ClaimsIdentity.DefaultNameClaimType,
+                ClaimsIdentity.DefaultRoleClaimType);
+
+            var redirectUrl = Url.Page("./Login", "Callback");
+            var authenticationProperties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            return new SignInResult(Startup.TogglToTempoAuthScheme, new ClaimsPrincipal(id), authenticationProperties);
         }
 
         public IActionResult OnGetCallback(string returnUrl = null)

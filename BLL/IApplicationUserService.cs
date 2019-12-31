@@ -11,5 +11,6 @@ namespace BLL
         string GetTogglTokenForCurrentUser();
         void SaveTempoTokenForCurrentUser(string tempoToken);
         string GetTempoTokenForCurrentUser();
+        void AddUser(string login, string password);
     }
 }

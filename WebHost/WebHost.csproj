@@ -31,6 +31,8 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app\components\login\login.component.ts" />
+    <None Remove="ClientApp\app\services\client-authentication.service.ts" />
     <None Remove="yarn.lock" />
     <Compile Remove="Views\**" />
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
@@ -77,6 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\client-authentication.service.ts" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->

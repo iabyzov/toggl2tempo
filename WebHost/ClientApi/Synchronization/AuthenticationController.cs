@@ -36,5 +36,12 @@ namespace WebHost.ClientApi.Synchronization
         {
             _userService.SaveTempoTokenForCurrentUser(model.Token);
         }
+
+        [HttpPost]
+        [Route("api/[controller]/[action]")]
+        public LoginResult Login([FromBody] JiraAuthModel model)
+        {
+            return new LoginResult { Username = model.User };
+        }
     }
 }
